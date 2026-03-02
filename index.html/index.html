@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>MestrAlum Pro</title>
+    <title>MestrAlum Pro v3.0</title>
     
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
@@ -12,15 +12,16 @@
     
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap');
-        body { font-family: 'Cairo', sans-serif; background-color: #f8fafc; color: #0f172a; transition: all 0.3s; }
-        .glass-card { background: white; border-radius: 2.5rem; border: 1px solid #e2e8f0; box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05); }
-        .btn-calc { background: linear-gradient(135deg, #1e293b 0%, #334155 100%); transition: 0.3s; border: none; }
+        body { font-family: 'Cairo', sans-serif; background-color: #f8fafc; color: #0f172a; transition: all 0.3s; -webkit-tap-highlight-color: transparent; }
+        .glass-card { background: white; border-radius: 2.5rem; border: 1px solid #e2e8f0; box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.05); }
+        .btn-calc { background: linear-gradient(135deg, #0f172a 0%, #334155 100%); transition: 0.3s; }
         .btn-calc:active { transform: scale(0.95); }
-        .qty-badge { font-size: 1.8rem; font-weight: 900; color: #2563eb; }
-        .logo-container { width: 50px; height: 50px; border-radius: 12px; overflow: hidden; background: #fff; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
-        .lang-toggle { cursor: pointer; background: #e2e8f0; border-radius: 50px; padding: 4px; display: flex; align-items: center; gap: 4px; width: 85px; }
-        .lang-active { background: #1e293b; color: white; border-radius: 50px; padding: 2px 12px; font-size: 11px; font-weight: bold; }
+        .qty-badge { font-size: 1.8rem; font-weight: 900; color: #2563eb; line-height: 1; }
+        .logo-box { width: 55px; height: 55px; border-radius: 16px; background: white; display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 15px rgba(0,0,0,0.08); border: 1px solid #f1f5f9; }
+        .lang-toggle { cursor: pointer; background: #e2e8f0; border-radius: 50px; padding: 4px; display: flex; align-items: center; gap: 4px; width: 85px; box-shadow: inset 0 2px 4px rgba(0,0,0,0.05); }
+        .lang-active { background: #0f172a; color: white; border-radius: 50px; padding: 2px 12px; font-size: 11px; font-weight: bold; }
         .lang-inactive { color: #64748b; font-size: 11px; padding: 0 8px; font-weight: bold; }
+        input, select { -webkit-appearance: none; appearance: none; }
     </style>
 </head>
 <body class="p-4 pb-12" id="body-main">
@@ -28,25 +29,25 @@
     <div class="max-w-md mx-auto space-y-6">
         <header class="flex justify-between items-center py-4">
             <div class="flex items-center gap-3">
-                <div class="logo-container">
-                 <img src="https://img.icons8.com/fluency/96/window-settings.png" alt="MestrAlum Logo">
+                <div class="logo-box">
+                    <img src="https://img.icons8.com/fluency/96/window-settings.png" alt="Logo" class="w-10 h-10">
                 </div>
                 <div>
                     <h1 class="text-xl font-black tracking-tighter text-slate-900">MestrAlum <span class="text-blue-600">Pro</span></h1>
-                    <p class="text-[9px] font-bold text-slate-400 uppercase tracking-widest leading-none">Aluminum & Glass Solutions</p>
+                    <p id="tagline" class="text-[9px] font-bold text-slate-400 uppercase tracking-widest leading-none">حلول الألمنيوم والزجاج</p>
                 </div>
             </div>
             
-            <div onclick="toggleLanguage()" class="lang-toggle shadow-inner">
+            <div onclick="toggleLanguage()" class="lang-toggle">
                 <div id="btn-ar" class="lang-active">AR</div>
                 <div id="btn-fr" class="lang-inactive">FR</div>
             </div>
         </header>
 
-        <section class="glass-card p-6 space-y-5 border-t-8 border-t-slate-800">
+        <section class="glass-card p-6 space-y-5 border-t-8 border-t-slate-900">
             <div class="space-y-1">
-                <label id="lbl-sys" class="text-[10px] font-black text-slate-400 px-1 uppercase">النظام / Système</label>
-                <select id="sys" onchange="toggleVantaux()" class="w-full p-4 bg-slate-50 border-2 border-slate-100 rounded-2xl font-bold focus:border-blue-600 outline-none transition-all">
+                <label id="lbl-sys" class="text-[10px] font-black text-slate-400 px-1 uppercase tracking-wider">نوع النظام</label>
+                <select id="sys" onchange="toggleVantaux()" class="w-full p-4 bg-slate-50 border-2 border-slate-100 rounded-2xl font-bold focus:border-blue-600 focus:bg-white outline-none transition-all">
                     <option value="S70_COL">Strugal S70 (Coulissant)</option>
                     <option value="TRIANA">Triana Coulis</option>
                     <option value="GIRALDA">Giralda Coulis</option>
@@ -54,7 +55,7 @@
             </div>
 
             <div id="vantaux-div" class="space-y-1">
-                <label id="lbl-vantaux" class="text-[10px] font-black text-slate-400 px-1 uppercase">الضلف / Vantaux</label>
+                <label id="lbl-vantaux" class="text-[10px] font-black text-slate-400 px-1 uppercase tracking-wider">عدد الضلف</label>
                 <select id="v_count" class="w-full p-4 bg-blue-50 border-2 border-blue-100 rounded-2xl font-bold focus:border-blue-600 outline-none transition-all">
                     <option value="2">2 Vantaux</option>
                     <option value="3">3 Vantaux</option>
@@ -64,17 +65,17 @@
 
             <div class="grid grid-cols-2 gap-4">
                 <div class="space-y-1">
-                    <label id="lbl-width" class="text-[10px] font-black text-slate-400 px-1 uppercase">العرض L (cm)</label>
-                    <input type="number" id="width" placeholder="0.0" class="w-full p-4 bg-slate-50 border-2 border-slate-100 rounded-2xl text-xl font-black outline-none focus:bg-white transition-all">
+                    <label id="lbl-width" class="text-[10px] font-black text-slate-400 px-1 uppercase tracking-wider">العرض (cm)</label>
+                    <input type="number" id="width" placeholder="0.0" class="w-full p-4 bg-slate-50 border-2 border-slate-100 rounded-2xl text-xl font-black outline-none focus:bg-white focus:border-blue-600 transition-all">
                 </div>
                 <div class="space-y-1">
-                    <label id="lbl-height" class="text-[10px] font-black text-slate-400 px-1 uppercase">الارتفاع H (cm)</label>
-                    <input type="number" id="height" placeholder="0.0" class="w-full p-4 bg-slate-50 border-2 border-slate-100 rounded-2xl text-xl font-black outline-none focus:bg-white transition-all">
+                    <label id="lbl-height" class="text-[10px] font-black text-slate-400 px-1 uppercase tracking-wider">الارتفاع (cm)</label>
+                    <input type="number" id="height" placeholder="0.0" class="w-full p-4 bg-slate-50 border-2 border-slate-100 rounded-2xl text-xl font-black outline-none focus:bg-white focus:border-blue-600 transition-all">
                 </div>
             </div>
 
-            <button onclick="calculate()" id="btn-calc" class="btn-calc w-full text-white font-black py-5 rounded-2xl shadow-xl flex items-center justify-center gap-3 text-lg">
-                <i data-lucide="calculator" size="20"></i> حساب النتائج
+            <button onclick="calculate()" id="btn-calc" class="btn-calc w-full text-white font-black py-5 rounded-3xl shadow-xl flex items-center justify-center gap-3 text-lg">
+                <i data-lucide="calculator" size="22"></i> <span>حساب القياسات</span>
             </button>
         </section>
 
@@ -87,17 +88,18 @@
 
                 <div id="alu-list" class="space-y-3 mb-6"></div>
 
-                <div class="bg-slate-900 p-6 rounded-[2rem] text-center text-white relative shadow-lg">
-                    <p id="lbl-glass" class="text-[10px] font-bold opacity-50 uppercase mb-1">الزجاج / VITRAGE</p>
+                <div class="bg-slate-900 p-6 rounded-[2rem] text-center text-white relative shadow-lg overflow-hidden">
+                    <div class="absolute top-0 right-0 p-4 opacity-5 rotate-12"><i data-lucide="layers" size="50"></i></div>
+                    <p id="lbl-glass" class="text-[10px] font-bold opacity-50 uppercase mb-1 tracking-widest">الزجاج / VITRAGE</p>
                     <div id="glass-val" class="text-3xl font-black tracking-tight text-blue-400">--</div>
                 </div>
 
                 <div class="grid grid-cols-2 gap-4 mt-8">
-                    <button onclick="downloadPDF()" class="flex items-center justify-center gap-2 p-4 bg-red-600 text-white rounded-2xl font-bold text-xs shadow-md">
-                        <i data-lucide="file-down" size="18"></i> <span id="btn-pdf">PDF</span>
+                    <button onclick="downloadPDF()" class="flex flex-col items-center justify-center gap-1 p-4 bg-red-600 text-white rounded-2xl font-bold shadow-lg">
+                        <i data-lucide="file-down" size="20"></i> <span class="text-[10px]">PDF</span>
                     </button>
-                    <button onclick="saveAsImage()" class="flex items-center justify-center gap-2 p-4 bg-slate-100 text-slate-700 rounded-2xl font-bold text-xs border border-slate-200">
-                        <i data-lucide="image" size="18"></i> <span id="btn-img">IMAGE</span>
+                    <button onclick="saveAsImage()" class="flex flex-col items-center justify-center gap-1 p-4 bg-slate-100 text-slate-700 rounded-2xl font-bold border border-slate-200">
+                        <i data-lucide="camera" size="20"></i> <span class="text-[10px]">IMAGE</span>
                     </button>
                 </div>
             </div>
@@ -111,15 +113,13 @@
         const dict = {
             ar: {
                 sys: "نوع النظام", vantaux: "عدد الضلف", width: "العرض L", height: "الارتفاع H",
-                calc: "حساب النتائج", listTitle: "قائمة التقطيع النهائية", glass: "الزجاج",
-                pdf: "تحميل PDF", img: "حفظ صورة",
-                dormW: "كادر عرض", dormH: "كادر ارتفاع", ouvW: "ضلفة عرض", ouvH: "ضلفة ارتفاع"
+                calc: "حساب القياسات", listTitle: "قائمة التقطيع النهائية", glass: "الزجاج",
+                tag: "حلول الألمنيوم والزجاج", dormW: "كادر عرض", dormH: "كادر ارتفاع", ouvW: "ضلفة عرض", ouvH: "ضلفة ارتفاع"
             },
             fr: {
-                sys: "Type de Système", vantaux: "Nb de Vantaux", width: "Largeur L", height: "Hauteur H",
+                sys: "Type de Système", vantaux: "Nombre de Vantaux", width: "Largeur L", height: "Hauteur H",
                 calc: "Calculer les mesures", listTitle: "Liste de Débitage", glass: "Vitrage",
-                pdf: "Exporter PDF", img: "Capturer Image",
-                dormW: "Dormant Largeur", dormH: "Dormant Hauteur", ouvW: "Ouvrant Largeur", ouvH: "Ouvrant Hauteur"
+                tag: "Solutions d'Aluminium & Verre", dormW: "Dormant Largeur", dormH: "Dormant Hauteur", ouvW: "Ouvrant Largeur", ouvH: "Ouvrant Hauteur"
             }
         };
 
@@ -145,11 +145,10 @@
             document.getElementById('lbl-vantaux').innerText = d.vantaux;
             document.getElementById('lbl-width').innerText = d.width;
             document.getElementById('lbl-height').innerText = d.height;
-            document.getElementById('btn-calc').innerHTML = `<i data-lucide="calculator" size="20"></i> ${d.calc}`;
+            document.getElementById('tagline').innerText = d.tag;
+            document.getElementById('btn-calc').querySelector('span').innerText = d.calc;
             document.getElementById('lbl-list-title').innerText = d.listTitle;
             document.getElementById('lbl-glass').innerText = d.glass;
-            document.getElementById('btn-pdf').innerText = d.pdf;
-            document.getElementById('btn-img').innerText = d.img;
             lucide.createIcons();
         }
 
@@ -203,12 +202,13 @@
             document.getElementById('alu-list').innerHTML = html;
             document.getElementById('glass-val').innerText = gw.toFixed(1) + " × " + gh.toFixed(1);
             document.getElementById('results-area').classList.remove('hidden');
+            window.scrollTo({top: 450, behavior: 'smooth'});
         }
 
         async function downloadPDF() {
             const { jsPDF } = window.jspdf;
             const doc = new jsPDF();
-            doc.text("MestrAlum Pro - Cutting Report", 20, 20);
+            doc.text("MestrAlum Pro - Debit", 20, 20);
             let y = 40;
             document.querySelectorAll("#alu-list > div").forEach(item => {
                 const n = item.querySelector("span").innerText;
@@ -216,8 +216,8 @@
                 const s = item.querySelector(".text-2xl").innerText;
                 doc.text(`${n}: ${s} cm (${q})`, 20, y); y += 10;
             });
-            doc.text(`Glass: ${document.getElementById('glass-val').innerText}`, 20, y+10);
-            doc.save(`MestrAlum-Report.pdf`);
+            doc.text(`Glass/Verre: ${document.getElementById('glass-val').innerText}`, 20, y+10);
+            doc.save(`Debit-Pro.pdf`);
         }
 
         function saveAsImage() {
@@ -231,4 +231,3 @@
     </script>
 </body>
 </html>
-
